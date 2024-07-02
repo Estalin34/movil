@@ -1,12 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Text, Button } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
-export default function WelcomeScreen() {
+type RootStackParamList = {
+  Welcome: undefined;
+  Usuario: undefined;
+};
+
+type WelcomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Welcome'>;
+type WelcomeScreenRouteProp = RouteProp<RootStackParamList, 'Welcome'>;
+
+type Props = {
+  navigation: WelcomeScreenNavigationProp;
+  route: WelcomeScreenRouteProp;
+};
+
+function WelcomeScreen({ navigation }: Props) {
   return (
     <View>
-      <Text>WelcomeScreen</Text>
+      <Text>Welcome Screen</Text>
+      <Button
+        title="Go to Usuario"
+        onPress={() => navigation.navigate('Usuario')}
+      />
     </View>
-  )
+  );
 }
 
-const styles = StyleSheet.create({})
+export default WelcomeScreen;
